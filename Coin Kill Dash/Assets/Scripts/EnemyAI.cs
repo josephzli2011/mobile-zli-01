@@ -1,11 +1,14 @@
+using Pathfinding;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 public class EnemyAI : MonoBehaviour
 {
-    NavMeshAgent agent;
+    //NavMeshAgent agent;
     public Transform target;
+    public float damage = 5f;
+    public float speed = 5f;
     // Start is called before the first frame update
 
     
@@ -14,19 +17,21 @@ public class EnemyAI : MonoBehaviour
     {
         Destroy(gameObject);
     }
-    void Start()
+    void Awake()
     {
         if(target == null)
         {
             target = GameObject.FindGameObjectWithTag("Player").transform;
         }
-        agent = GetComponent<NavMeshAgent>();    
+        //agent = GetComponent<NavMeshAgent>();    
+        GetComponent<AIDestinationSetter>().target = target;
     }
 
     // Update is called once per frame
     void Update()
     {
-        agent.SetDestination(target.position);   
+        //agent.SetDestination(target.position);   
+        //GetComponent<Rigidbody>().velocity = transform.forward * speed;
     }
 
     private void OnCollisionEnter(Collision collision)
@@ -35,11 +40,15 @@ public class EnemyAI : MonoBehaviour
         {
             
             collision.collider.attachedRigidbody.AddForce(-(transform.position - target.position).normalized * 10000, ForceMode.VelocityChange);
-            collision.collider.GetComponent<Health>().TakeDamage(5f);
+            collision.collider.GetComponent<Health>().TakeDamage(damage);
         }
         if(collision.collider.CompareTag("TaserBullet"))
         {
             GetComponent<Health>().TakeDamage(1f);
+        }
+        if(collision.collider.CompareTag("PistolBullet"))
+        {
+            GetComponent<Health>().TakeDamage(5f);
         }
     }
 }

@@ -14,7 +14,7 @@ public class WaveSpawner : MonoBehaviour
         public int count;
         public float delay;
     }
-    public Wave[] waves;
+    public List<Wave> waves;
     private int nextWave = 0;
 
     public float timeBetweenWaves = 5f;
@@ -24,14 +24,21 @@ public class WaveSpawner : MonoBehaviour
 
     private float searchCountdown = 1f;
 
+    public float countMultiplier = 1.5f;
+
     private SpawnState state = SpawnState.COUNTING;
 
     void WaveCompleted()
     {
-        if (nextWave + 1 > waves.Length - 1)
+        if (nextWave + 1 > waves.Count - 1)
         {
-            nextWave = 0;
-            Debug.Log("Completed all manual waves. Temporarily looping");
+            Wave wave = new Wave();
+            wave.name = "Wave " + (nextWave + 1);
+            wave.enemy = waves[nextWave].enemy;
+            wave.count = (int)(waves[nextWave].count * countMultiplier);
+            wave.delay = waves[nextWave].delay;
+            nextWave++;
+            waves.Add(wave);
         }
         else
         {

@@ -6,11 +6,12 @@ TagManager:
   tags:
   - TaserBullet
   - Enemy
+  - PistolBullet
   layers:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - 
+  - Obstacle
   - Water
   - UI
   - 

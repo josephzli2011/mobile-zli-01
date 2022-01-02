@@ -9,6 +9,10 @@ public class Health : MonoBehaviour
     public RectTransform healthBar;
     float health;
     public UnityEvent onDie;
+    public void Die()
+    {
+        Destroy(gameObject);
+    }
     private void Awake()
     {
         health = startHealth;

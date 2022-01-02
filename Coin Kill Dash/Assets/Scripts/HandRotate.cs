@@ -19,8 +19,8 @@ public class HandRotate : MonoBehaviour
         if (Application.isMobilePlatform)
         {
             aim.gameObject.gameObject.SetActive(true);
-            if (aim.Vertical >= 0.05 || aim.Horizontal >= 0.05)
-                transform.eulerAngles = new Vector3(0, Mathf.Atan2(aim.Vertical, -aim.Horizontal) * 180 / Mathf.PI, 0);
+            
+            transform.eulerAngles = new Vector3(0, Mathf.Atan2(aim.Vertical, -aim.Horizontal) * 180 / Mathf.PI, 0);
         } else
         {
             aim.gameObject.SetActive(false);
