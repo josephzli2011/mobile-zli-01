@@ -11,7 +11,7 @@ public class Health : MonoBehaviour
     public UnityEvent onDie;
     public void Die()
     {
-        Destroy(gameObject);
+        onDie.Invoke();
     }
     private void Awake()
     {
@@ -28,7 +28,7 @@ public class Health : MonoBehaviour
         if(health <= 0)
         {
             if (healthBar)
-                healthBar.localScale = new Vector3(health / startHealth, 1, 1);
+                healthBar.localScale = new Vector3(0, 1, 1);
             onDie.Invoke();
         }
     }

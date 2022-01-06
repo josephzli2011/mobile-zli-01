@@ -1,9 +1,10 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using UnityEngine.SceneManagement;
 public class PlayerMovement : MonoBehaviour
 {
+    public string doneScreen = "GameOver";
     Rigidbody rb;
     float horizontal = 0f;
     float vertical = 0f;
@@ -28,6 +29,11 @@ public class PlayerMovement : MonoBehaviour
             horizontal = joystick.Direction.x * speed;
             vertical = joystick.Direction.y * speed;
         }
+    }
+
+    public void Die()
+    {
+        SceneManager.LoadScene(doneScreen);
     }
 
     private void FixedUpdate()
