@@ -15,7 +15,7 @@ public class EnemyAI : MonoBehaviour
 
     public void Destroy()
     {
-        Destroy(gameObject);
+        Destroy(this.gameObject);
     }
     void Awake()
     {
@@ -46,7 +46,7 @@ public class EnemyAI : MonoBehaviour
         {
             GetComponent<Health>().TakeDamage(1f);
         }
-        if(collision.collider.CompareTag("PistolBullet"))
+         else if(collision.collider.CompareTag("PistolBullet"))
         {
             GetComponent<Health>().TakeDamage(5f);
         }

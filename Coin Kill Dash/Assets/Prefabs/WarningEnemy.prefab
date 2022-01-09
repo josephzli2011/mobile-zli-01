@@ -1281,9 +1281,9 @@ MonoBehaviour:
   onDie:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 7844252493671743519}
-        m_TargetAssemblyTypeName: Health, Assembly-CSharp
-        m_MethodName: Die
+      - m_Target: {fileID: 919132149431563220}
+        m_TargetAssemblyTypeName: EnemyAI, Assembly-CSharp
+        m_MethodName: Destroy
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

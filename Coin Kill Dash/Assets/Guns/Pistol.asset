@@ -18,3 +18,4 @@ MonoBehaviour:
   bulletsPerSecond: 2
   playerPrefOwnedName: Pistol_owned
   price: 500
+  gunIndex: 1

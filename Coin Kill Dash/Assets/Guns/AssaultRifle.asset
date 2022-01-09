@@ -18,3 +18,4 @@ MonoBehaviour:
   bulletsPerSecond: 5
   playerPrefOwnedName: AR_owned
   price: 5000
+  gunIndex: 2

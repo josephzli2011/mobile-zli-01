@@ -11,4 +11,5 @@ public class GunItem : ScriptableObject
     public int bulletsPerSecond;
     public string playerPrefOwnedName;
     public int price = 100;
+    public int gunIndex = 0;
 }

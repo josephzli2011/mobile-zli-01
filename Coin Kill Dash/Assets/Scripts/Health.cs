@@ -27,9 +27,7 @@ public class Health : MonoBehaviour
         health -= damage;
         if(health <= 0)
         {
-            if (healthBar)
-                healthBar.localScale = new Vector3(0, 1, 1);
-            onDie.Invoke();
+            Die();
         }
     }
 }

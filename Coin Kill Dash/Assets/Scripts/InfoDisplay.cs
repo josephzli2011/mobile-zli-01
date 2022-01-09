@@ -9,9 +9,12 @@ public class InfoDisplay : MonoBehaviour
     public Text infoDesc;
     public Text infoDmg;
     public Text infoDps;
+    public Text infoPrice;
     public Text infoOwned;
     public Button buy;
     public Button equip;
+    public Text equippedGunText;
+    public string[] guns;
     void Start()
     {
         infoName.text = "";
@@ -19,24 +22,31 @@ public class InfoDisplay : MonoBehaviour
         infoDmg.text = "";
         infoDps.text = "";
         infoOwned.text = "";
+        infoPrice.text = "";
         buy.gameObject.SetActive(false);
         equip.gameObject.SetActive(false);
     }
 
+    private void Update()
+    {
+        equippedGunText.text = "EQUIPPED GUN: " + guns[PlayerPrefs.GetInt("EquippedGun", 0)];
+    }
 
     public void SetGun(GunItem _gun)
     {
-        if (_gun.price == 0 && PlayerPrefs.GetInt(gun.playerPrefOwnedName, 0) == 0)
+        
+        gun = _gun;
+        if (gun.price == 0 && PlayerPrefs.GetInt(gun.playerPrefOwnedName, 0) == 0)
         {
             PlayerPrefs.SetInt(gun.playerPrefOwnedName, 1);
             buy.interactable = false;
             equip.interactable = true;
         }
-        gun = _gun;
         infoName.text = gun.gunName;
         infoDesc.text = gun.description;
         infoDmg.text = "DAMAGE: "+gun.damage;
         infoDps.text = "BULLETS PER SECOND: " + gun.bulletsPerSecond;
+        infoPrice.text = "PRICE: " + gun.price;
         buy.gameObject.SetActive(true);
         equip.gameObject.SetActive(true);
         if (PlayerPrefs.GetInt(gun.playerPrefOwnedName, 0) == 0)
@@ -65,7 +75,23 @@ public class InfoDisplay : MonoBehaviour
             equip.interactable = true;
             buy.interactable = false;
         }
-       
 
+        
+    }
+
+    public void BuyGun()
+    {
+        PlayerPrefs.SetInt(gun.playerPrefOwnedName, 1);
+        PlayerPrefs.SetInt("Money", PlayerPrefs.GetInt("Money", 0) - gun.price) ;
+        buy.interactable = false;
+        equip.interactable = true;
+        infoOwned.text = "OWNED";
+        infoOwned.color = Color.green;
+
+    }
+
+    public void Equip()
+    {
+        PlayerPrefs.SetInt("EquippedGun", gun.gunIndex);
     }
 }
